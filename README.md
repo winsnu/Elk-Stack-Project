@@ -85,8 +85,8 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- 10.1.0.5
-- 10.1.0.6
+- 10.1.0.5 (Web-1)
+- 10.1.0.6 (Web-2)
 
 We have installed the following Beats on these machines:
 - Filebeat
@@ -98,15 +98,30 @@ These Beats allow us to collect the following information from each machine:
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+[filebeat-playbook.yml](Ansible/filebeat-playbook.yml)
+[metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml)
 
 SSH into the control node and follow the steps below:
 - Copy the filebeat-config.yml file to /etc/ansible/files
 - Update the /etc/ansible/hosts file to include the IP address of webservers and the Elk-Stack
-- Run the playbook, and navigate to http://personalIP:5601/app/kibana to check that the installation worked as expected.
+- Run the playbook, and navigate to http://personalIP:5601/ to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- Which file is the playbook? 
+    [filebeat-playbook.yml](Ansible/filebeat-playbook.yml)
+- Where do you copy it?
+    Into the etc/ansible/files folder
+- Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+    You update the [hosts](Ansible/hosts) file by adding the private IP of the specific machine
+- Which URL do you navigate to in order to check that the ELK server is running?
+    http://VM-IP:5601/app/kibana
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+Open terminal, SSH azadmin@JumpBox-IP - (SSH into your JumpBox VM)
+sudo docker container list -a - (list containers on your VM)
+sudo docker start "container-name" - (start your specified container)
+docker attach "container-name" - (attach your container)
+cd /etc/ansible/ - (navigate to the ansible directory)
+curl https://github.com/winsnu/Elk-Stack-Project/blob/main/Ansible/Install-elk.yml - (to download playbook file)
+nano hosts - (update IP on [webservers][elk][elkservers] Example: 10.0.0.4 ansible_python_interpeter=/usr/bin/python3
+nano ansible.cfg - (add remote_user=azadmin to which server you want to use)
+ansible-playbook my-playbook.yml - (ansible-playbook is the command to run the file)
