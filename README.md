@@ -117,11 +117,19 @@ SSH into the control node and follow the steps below:
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
 Open terminal, SSH azadmin@JumpBox-IP - (SSH into your JumpBox VM)
+
 sudo docker container list -a - (list containers on your VM)
+
 sudo docker start "container-name" - (start your specified container)
+
 docker attach "container-name" - (attach your container)
+
 cd /etc/ansible/ - (navigate to the ansible directory)
+
 curl https://github.com/winsnu/Elk-Stack-Project/blob/main/Ansible/Install-elk.yml - (to download playbook file)
+
 nano hosts - (update IP on [webservers][elk][elkservers] Example: 10.0.0.4 ansible_python_interpeter=/usr/bin/python3
+
 nano ansible.cfg - (add remote_user=azadmin to which server you want to use)
+
 ansible-playbook my-playbook.yml - (ansible-playbook is the command to run the file)
