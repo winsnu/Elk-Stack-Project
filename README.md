@@ -116,6 +116,7 @@ SSH into the control node and follow the steps below:
     http://VM-IP:5601/app/kibana
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+
 Open terminal, SSH azadmin@JumpBox-IP - (SSH into your JumpBox VM)
 
 sudo docker container list -a - (list containers on your VM)
